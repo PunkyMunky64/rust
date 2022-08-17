@@ -391,6 +391,9 @@ impl f32 {
     /// Maximum possible power of 10 exponent.
     #[stable(feature = "assoc_int_consts", since = "1.43.0")]
     pub const MAX_10_EXP: i32 = 38;
+    /// Zero (0).
+    #[stable(feature = "more_assoc_int_consts", since = "1.64.0")]
+    pub const ZERO: f32 = 0.0_f32;
 
     /// Not a Number (NaN).
     ///
@@ -403,13 +406,13 @@ impl f32 {
     /// and the stability of its representation over Rust versions
     /// and target platforms isn't guaranteed.
     #[stable(feature = "assoc_int_consts", since = "1.43.0")]
-    pub const NAN: f32 = 0.0_f32 / 0.0_f32;
+    pub const NAN: f32 = f32::ZERO / f32::ZERO;
     /// Infinity (∞).
     #[stable(feature = "assoc_int_consts", since = "1.43.0")]
-    pub const INFINITY: f32 = 1.0_f32 / 0.0_f32;
+    pub const INFINITY: f32 = 1.0_f32 / f32::ZERO;
     /// Negative infinity (−∞).
     #[stable(feature = "assoc_int_consts", since = "1.43.0")]
-    pub const NEG_INFINITY: f32 = -1.0_f32 / 0.0_f32;
+    pub const NEG_INFINITY: f32 = -1.0_f32 / f32::ZERO;
 
     /// Returns `true` if this value is NaN.
     ///
@@ -494,7 +497,7 @@ impl f32 {
     /// let min = f32::MIN_POSITIVE; // 1.17549435e-38f32
     /// let max = f32::MAX;
     /// let lower_than_min = 1.0e-40_f32;
-    /// let zero = 0.0_f32;
+    /// let zero = f32::ZERO;
     ///
     /// assert!(!min.is_subnormal());
     /// assert!(!max.is_subnormal());
@@ -521,7 +524,7 @@ impl f32 {
     /// let min = f32::MIN_POSITIVE; // 1.17549435e-38f32
     /// let max = f32::MAX;
     /// let lower_than_min = 1.0e-40_f32;
-    /// let zero = 0.0_f32;
+    /// let zero = f32::ZERO;
     ///
     /// assert!(min.is_normal());
     /// assert!(max.is_normal());
