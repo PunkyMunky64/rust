@@ -390,6 +390,13 @@ impl f64 {
     /// Maximum possible power of 10 exponent.
     #[stable(feature = "assoc_int_consts", since = "1.43.0")]
     pub const MAX_10_EXP: i32 = 308;
+    /// Zero (0).
+    #[stable(feature = "more_assoc_int_consts", since = "1.64.0")]
+    pub const ZERO: f64 = 0.0_f64;
+    /// Negative Zero (-0).
+    /// Specified in IEEE-754 that there is both a positive and negative zero
+    #[stable(feature = "more_assoc_int_consts", since = "1.64.0")]
+    pub const ZERO: f64 = 0.0_f64;
 
     /// Not a Number (NaN).
     ///
@@ -402,14 +409,14 @@ impl f64 {
     /// and the stability of its representation over Rust versions
     /// and target platforms isn't guaranteed.
     #[stable(feature = "assoc_int_consts", since = "1.43.0")]
-    pub const NAN: f64 = 0.0_f64 / 0.0_f64;
+    pub const NAN: f64 = f64::ZERO / f64::ZERO;
     /// Infinity (∞).
     #[stable(feature = "assoc_int_consts", since = "1.43.0")]
-    pub const INFINITY: f64 = 1.0_f64 / 0.0_f64;
+    pub const INFINITY: f64 = 1.0_f64 / f64::ZERO;
     /// Negative infinity (−∞).
     #[stable(feature = "assoc_int_consts", since = "1.43.0")]
-    pub const NEG_INFINITY: f64 = -1.0_f64 / 0.0_f64;
-
+    pub const NEG_INFINITY: f64 = -1.0_f64 / f64::ZERO;
+    
     /// Returns `true` if this value is NaN.
     ///
     /// ```
@@ -495,7 +502,7 @@ impl f64 {
     /// let min = f64::MIN_POSITIVE; // 2.2250738585072014e-308_f64
     /// let max = f64::MAX;
     /// let lower_than_min = 1.0e-308_f64;
-    /// let zero = 0.0_f64;
+    /// let zero = f64::ZERO;
     ///
     /// assert!(!min.is_subnormal());
     /// assert!(!max.is_subnormal());
